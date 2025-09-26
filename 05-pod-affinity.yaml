@@ -23,7 +23,8 @@ spec:
       # requiredDuringSchedulingIgnoredDuringExecution:
       # - labelSelector:
       #     matchExpressions:
-      #     - key: app-nameee
+      #     - key: app-name
+      #     - key: app-nameee # This is "HARD RULE" as lable will not match and it will be in pending state.
       #       operator: In
       #       values:
       #       - pod-1
@@ -33,7 +34,7 @@ spec:
         podAffinityTerm:
           labelSelector:
             matchExpressions:
-            - key: app-nameee
+            - key: app-nameee # This is the "SOFT RULE" if labels are not matched, then scheduler schedules on to some other node. 
               operator: In
               values:
               - pod-1
